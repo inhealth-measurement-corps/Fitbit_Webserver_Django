@@ -74,7 +74,7 @@ def checkin(request, user_id, ping_type):
 
 def get_checkins_yesterday(request):
     today = datetime.datetime.today().replace(hour=4, minute=0, second=0)
-    yesterday = today - datetime.timedelta(days=1)
+    yesterday = today - datetime.timedelta(days=2)
     # yesterday.replace(hour=0, minute=0, second=0)
 
     filter_results = Checkin.objects.filter(time__gte=yesterday, time__lte=today)
