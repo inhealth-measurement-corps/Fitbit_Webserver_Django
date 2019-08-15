@@ -13,6 +13,7 @@ urlpatterns = [
     path('checkin/<int:user_id>/<int:ping_type>/', views.checkin, name='checkin'),
     path('submit_survey_compact/<int:user_id>/<str:survey_string>', views.submit_survey_compact, name='submit_survey_compact'),
     path('get_surveys_yesterday/', views.get_surveys_yesterday, name='get_surveys_yesterday'),
+    path('get_surveys_custom_day/<str:date_string>/', views.get_surveys_custom_day, name='get_surveys_custom_day'),
     path('get_checkins_yesterday/', views.get_checkins_yesterday, name='get_checkins_yesterday'),
     path('get_checkins_custom_day/<str:date_string>/', views.get_checkins_custom_day, name='get_checkins_custom_day'),
     path('clear_data_before_yesterday', views.clear_data_before_yesterday, name='clear_data_before_yesterday'),
