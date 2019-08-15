@@ -116,7 +116,7 @@ def get_surveys_custom_day(request, date_string):
     dt = datetime.datetime.strptime(date_string, "%Y-%m-%d")
     dt.replace(hour=0, minute=0, second=0)
 
-    filter_results = SurveyCompactResult.objects.filter(time__gte=dt, time__lte=today)
+    filter_results = SurveyCompactResult.objects.filter(submit_time__gte=dt, submit_time__lte=today)
     # data_json = serializers.serialize("json", results, fields=())
     result_values = filter_results.values()
 
