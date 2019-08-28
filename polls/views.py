@@ -83,6 +83,20 @@ def get_checkins_yesterday(request):
 
     return JsonResponse({"Checkins" : list(result_values)})
 
+def get_checkins_custom_day(request, date_string):
+    today = datetime.datetime.today().replace(hour=4, minute=0, second=0)
+    # yesterday = today - datetime.timedelta(days=1)
+    # yesterday.replace(hour=0, minute=0, second=0)
+    dt = datetime.datetime.strptime(date_string, "%Y-%m-%d")
+    dt.replace(hour=0, minute=0, second=0)
+
+    filter_results = Checkin.objects.filter(time__gte=dt, time__lte=today)
+    # data_json = serializers.serialize("json", results, fields=())
+    result_values = filter_results.values()
+
+    return JsonResponse({"Checkins" : list(result_values)})
+
+
 
 def get_surveys_yesterday(request):
     today = datetime.datetime.today().replace(hour=4, minute=0, second=0)
@@ -90,6 +104,19 @@ def get_surveys_yesterday(request):
     # yesterday.replace(hour=0, minute=0, second=0)
 
     filter_results = SurveyCompactResult.objects.filter(submit_time__gte=yesterday, submit_time__lte=today)
+    # data_json = serializers.serialize("json", results, fields=())
+    result_values = filter_results.values()
+
+    return JsonResponse({"Surveys" : list(result_values)})
+
+def get_surveys_custom_day(request, date_string):
+    today = datetime.datetime.today().replace(hour=4, minute=0, second=0)
+    # yesterday = today - datetime.timedelta(days=1)
+    # yesterday.replace(hour=0, minute=0, second=0)
+    dt = datetime.datetime.strptime(date_string, "%Y-%m-%d")
+    dt.replace(hour=0, minute=0, second=0)
+
+    filter_results = SurveyCompactResult.objects.filter(submit_time__gte=dt, submit_time__lte=today)
     # data_json = serializers.serialize("json", results, fields=())
     result_values = filter_results.values()
 
